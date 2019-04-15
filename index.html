@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monster Slayer</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+    <div id="app">
+        <section class="row">
+            <div class="small-6 columns">
+                <h1 class="text-center">TU</h1>
+                <div class="healthbar">
+                    <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;" :style="{width:playerHealth +'%'}">
+                            {{playerHealth}}
+                        </div>
+                    </div>
+                </div>
+                <div class="small-6 columns">
+                    <h1 class="text-center">MOUSTRO</h1>
+                    <div class="healthbar">
+                        <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;" :style="{width:mosterHealth +'%'}">
+                                {{mosterHealth}}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="row controls" v-if="!gameRunning">
+                    <div class="small-12 columns">
+                        <button id="start-game" @click="iniciarJuego">INICIAR NUEVO JUEGO</button>
+                    </div>
+                </section>
+                <section class="row controls" v-else>
+                    <div class="small-12 columns">
+                        <button id="attack" @click="atake">ATAKE</button>
+                        <button id="special-attack" @click="atakeSpecial">ATAKE ESPECIAL</button>
+                        <button id="heal" @click="sanar">SANAR</button>
+                        <button id="give-up" @click="rendirse">RENDIRSE</button>
+                    </div>
+                </section>
+                <section class="row log">
+                    <div class="small-12 columns">
+                        <ul>
+                            <li v-for="turn in turns" :class="{'player-turn':turn.isPlayer,'monster-turn':!turn.isPlayer}">
+                                {{turn.text}}
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            <script src="myScript.js"></script>
+</body>
+</html>
